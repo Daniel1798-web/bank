@@ -48,7 +48,6 @@ export class LogginComponent implements OnInit {
   
 
   //fireBase
-  auth = getAuth();
 
 
   log:boolean = false;
@@ -95,8 +94,10 @@ export class LogginComponent implements OnInit {
 
   //crear cuenta
   singIn(){
+    const auth = getAuth();
+
     this.spinerActive = true;
-    createUserWithEmailAndPassword(this.auth, this.emailSing, this.passwordSing)
+    createUserWithEmailAndPassword(auth, this.emailSing, this.passwordSing)
     .then((userCredential) => {
       this.spinerActive = false;
 
@@ -126,8 +127,10 @@ export class LogginComponent implements OnInit {
 
   //Iniciar Sesión 
   logIn(){
+    const auth = getAuth();
+
     this.spinerActive = true;
-    signInWithEmailAndPassword(this.auth, this.email, this.password)
+    signInWithEmailAndPassword(auth, this.email, this.password)
   .then((userCredential) => {
     this.spinerActive = false;
     // Signed in 
@@ -156,8 +159,9 @@ export class LogginComponent implements OnInit {
 
  logInFacebook(){
  const provider = new FacebookAuthProvider();
+ const auth = getAuth();
 
-signInWithPopup(this.auth, provider)
+signInWithPopup(auth, provider)
   .then((result) => {
     // The signed-in user info.
     const user = result.user;
@@ -188,8 +192,9 @@ signInWithPopup(this.auth, provider)
 
  LogInTwiter(){
   const provider = new TwitterAuthProvider();
+  const auth = getAuth();
 
-  signInWithPopup(this.auth, provider)
+  signInWithPopup(auth, provider)
   .then((result) => {
     // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
     // You can use these server side with your app's credentials to access the Twitter API.
@@ -221,8 +226,9 @@ signInWithPopup(this.auth, provider)
  logInGithub(){
 
   const provider = new GithubAuthProvider();
+  const auth = getAuth();
 
-signInWithPopup(this.auth, provider)
+signInWithPopup(auth, provider)
   .then((result) => {
     // This gives you a GitHub Access Token. You can use it to access the GitHub API.
     const credential = GithubAuthProvider.credentialFromResult(result);
