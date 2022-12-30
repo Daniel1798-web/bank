@@ -5,7 +5,7 @@
 
 
 export const environment = {
-  production: true
+  production: false
 };
 
 /*
@@ -29,7 +29,6 @@ import { getFirestore } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyAZUc5OTwCKwBdqAUD6jWhUA-31rMqKjyw",
   authDomain: "galaxicoin-137be.firebaseapp.com",
-  databaseURL: "https://bank-alpha-seven.vercel.app/",
   projectId: "galaxicoin-137be",
   storageBucket: "galaxicoin-137be.appspot.com",
   messagingSenderId: "954792632491",
@@ -42,3 +41,12 @@ const db = getFirestore();
 const auth = getAuth(app);
 
 export { auth, db };
+
+export function getFirebaseConfig() {
+  if (!firebaseConfig || !firebaseConfig.apiKey) {
+    throw new Error('No Firebase configuration object provided.' + '\n' +
+    'Add your web app\'s configuration object to firebase-config.js');
+  } else {
+    return firebaseConfig;
+  }
+}
