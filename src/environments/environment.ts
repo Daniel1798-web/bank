@@ -14,3 +14,22 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
+// Import the functions you need from the SDKs you need
+
+
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAZUc5OTwCKwBdqAUD6jWhUA-31rMqKjyw",
+  authDomain: "galaxicoin-137be.firebaseapp.com",
+  projectId: "galaxicoin-137be",
+  storageBucket: "galaxicoin-137be.appspot.com",
+  messagingSenderId: "954792632491",
+  appId: "1:954792632491:web:dff2a11115bbdb813217ee"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);

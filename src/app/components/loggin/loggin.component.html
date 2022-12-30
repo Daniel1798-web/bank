@@ -1,0 +1,134 @@
+<div class="box">
+    
+    <!--Indicativos-->
+    <div class="title" *ngIf="log === false && createAcount === false">
+        <h2>Loggin in GalaxiBank</h2>
+
+        <div class="socialMedia">
+            <button (click)="showLog()">Get into</button>
+            <img (click)="logInFacebook()"  src="assets/icons/facebook.png">
+            <img (click)="logInGithub()"  src="assets/icons/twitter.png">
+
+        </div>
+
+        <div class="text">
+            Keep in mind that when you enter you will see your credit card information. To see your account details,
+             log in from the app
+        </div>
+        <div class="row"></div>
+
+        <div class="options">
+            <div class="textInfo">
+                <div>
+                    <img src="assets/icons/factura.png">
+                </div>                <font>Pay your summary online</font>
+            </div>
+
+            <div class="textInfo">
+                <div>
+                    <img src="assets/icons/tarjeta.png">
+                </div>                <font>Control all the moves card</font>
+            </div>
+
+            <div class="textInfo">
+                <div>
+                    <img src="assets/icons/transferencia.png">
+                </div>                <font>transfers easier than ever</font>
+            </div>
+
+            <div class="textInfo">
+                <div>
+                    <img src="assets/icons/prestamo.png">
+                </div>
+                <font>get a loan easily</font>
+            </div>
+        </div>
+
+    </div>
+   
+
+    <div class="forms" *ngIf="log || createAcount">
+        <div class="back">
+            <img (click)="back()" class="imgBack" src="assets/icons/volver.png">
+        </div>
+
+
+        <!--Iniciar sesión-->
+        <form *ngIf="log" [formGroup]="formuDatos">
+
+            <div class="boxInput">
+                <span>Email</span>
+                <input placeholder="Email" type="text"  [(ngModel)]="email" formControlName="email" required>
+                <span class="errorMessage" *ngIf="formuControlLog.invalid && formuControlLog.dirty">
+                    write a valid email
+                </span>
+            </div>
+
+            <div class="boxInput">
+                <span>Password</span>
+                <input placeholder="Password" type="password" [(ngModel)]="password" formControlName="password" required>
+                <span class="errorMessage" *ngIf="formuControlLog2.invalid && formuControlLog2.dirty">
+                    Required               
+                </span>
+            </div>
+
+            <div class="boxInput">
+                <button (click)="logIn()" [disabled]="formuDatos.invalid">Login</button>
+                <span class="redirection" (click)="showSing()">You don`t have a Acount?</span>
+            </div>
+
+            <div class="boxInput">
+                <app-spinner *ngIf="spinerActive"></app-spinner>
+                <span *ngIf="textInfo.length > 0 && textInfo === 'Succes'" style="color: rgba(0, 255, 13, 0.665);">{{textInfo}}</span>
+                <span *ngIf="textInfo.length > 0 && textInfo != 'Succes'" style="color: rgba(255, 0, 0, 0.665);">{{textInfo}}</span>
+            </div>
+           
+        </form>
+
+
+
+
+        <!--Crear cuenta-->
+        <form *ngIf="createAcount" [formGroup]="formuDatosSing">
+           
+            <div class="boxInput">
+                <span>Email</span>
+                <input placeholder="Email" type="text" [(ngModel)]="emailSing" formControlName="email" name="email" required>
+                <span class="errorMessage" *ngIf="formuControl.invalid && formuControl.dirty">
+                    write a valid email
+                </span>
+            </div> 
+
+            <div class="boxInput">
+                <span>Password</span>
+                <input placeholder="password" type="password"  [(ngModel)]="passwordSing" formControlName="password" name="password" required>
+                <span class="errorMessage" *ngIf="formuControl2.invalid &&  formuControl2.dirty">
+                    must have more than 7 characters                
+                </span>
+            </div>
+
+            <div class="boxInput">
+                <span>Confirm Password</span>
+                <input placeholder="password" type="password"  [(ngModel)]="passwordVerify" formControlName="passwordVerify" name="password" required>
+                <span class="errorMessage" *ngIf="passwordSing != passwordVerify ">
+                    make sure it's the same?
+                </span>
+            </div>
+
+            <div class="boxInput">
+                <button (click)="singIn()" [disabled]="formuDatosSing.invalid">Sing In</button>
+                <span class="redirection" (click)="showLog()" >You have a Acount?</span>
+
+            </div>
+
+            <div class="boxInput">
+                <app-spinner *ngIf="spinerActive"></app-spinner>
+                <span *ngIf="textInfo.length > 0 && textInfo === 'Succes'" style="color: rgba(0, 255, 13, 0.665);">{{textInfo}}</span>
+                <span *ngIf="textInfo.length > 0 && textInfo != 'Succes'" style="color: rgba(255, 0, 0, 0.665);">{{textInfo}}</span>
+            </div>
+
+        </form>
+    </div>
+
+
+</div>

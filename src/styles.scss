@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+html,body{
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden ;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url('./assets/galaxia.jpg');
+    //background-color: steelblue;
+}
+
+.ng-touched.ng-invalid:is(input, textarea),
+.ng-dirty.ng-invalid:is(input,textarea)
+{
+    border-bottom: 2px red solid;
+  caret-color: red;
+}

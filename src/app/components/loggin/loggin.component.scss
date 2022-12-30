@@ -1,0 +1,221 @@
+
+.box{
+    width: 100%;
+}
+
+
+.title{
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    padding: 20px;
+    h2{
+        margin-top: 50px;
+        margin-left: 20px;
+
+        color: #333;
+    font: 22px "Gibson-Medium",sans-serif;
+    }
+
+    .socialMedia{
+      width: 100%;
+      display: flex;
+
+      button{
+        margin-left: 20px;
+        padding: 10px;
+        height: auto;
+      }
+
+      img{
+        width: 32px;
+        height: 32px;
+        margin: auto;
+        margin-left:10px ;
+      }
+    }
+
+    
+
+    .text{
+      color: #000000;
+      font: 18px "Gibson-Regular",sans-serif;
+      line-height: 24px;
+      width: 520px;
+      margin-top: 50px;
+    }
+
+    .row{
+      background-color: #000000;
+      height: 1px;
+      width: 100%;
+      padding-top: 1px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+
+    .options{
+      display: grid;
+      grid-gap: 30px;
+      grid-template-columns: 50% 50%;
+      margin-top: 50px;
+
+      .textInfo{
+        align-items: center;
+        display: flex;
+
+        div{
+          height: 48px;
+          width: 48px;
+          background: #78c0ff;
+          border-radius: 50px;
+          display: flex;
+          justify-content: center;
+          margin-right: 5px;
+
+
+          img{
+            width: 32px;
+            height: 32px;
+            margin: auto;
+          }
+        }
+      }
+    }
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+button{
+    width: 150px;
+    height: 25px;
+    margin-top: 10px;
+    background: white;
+    border-radius: 50px;
+    border: none;
+    box-shadow: 2px 2px 2px black, -2px 0px 2px black;
+}
+
+button:hover{
+    box-shadow: 1px 1px 1px black, -1px 0px 1px black;
+
+}
+
+
+
+
+  .forms{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+    width: 100%;
+    height: 500px;
+    margin-top: 50px;
+
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin-top: 50px;
+        button{
+          margin-left: auto;
+          margin-right: auto;
+        }
+    }
+  .back{
+    transform: translate(-250px, 10px);
+    position: absolute;
+  
+
+    .imgBack{
+      width: 32px;
+      height: 32px;
+      margin-right: auto;
+    }
+
+    .imgBack:hover{
+      cursor: pointer;
+      width: 35px;
+      height: 35px;
+      box-shadow: 2px 2px 2px green;
+      border-radius: 20px;
+    }
+
+  }
+   
+
+  .errorMessage{
+    color:red;
+  }
+
+
+  }
+
+
+  .boxInput{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+
+    &-buttons{
+        flex-direction: column;
+    }
+
+
+    span{
+        font-weight: bold;
+        text-align: start;
+        margin-left: 10px;
+        color:#000000 ;
+
+      }
+
+      .redirection{
+        width: 140px;
+        border-bottom: 2px solid white;
+        font-size: 12px;
+        margin-top: 10px;
+    
+      }
+    
+      .redirection:hover{
+        color: rgb(157 0 255);
+        border-bottom: 2px solid #6e00ff;
+      }  
+    
+  }
+
+  input{
+    border:none;
+    outline: none;
+    margin-left: 10px;
+    border-bottom: 2px solid #ccc;
+    background:none;
+    color: black;
+    width: 250px;
+    height: 20px;
+    text-align: center;
+    font-size: 17px;
+  }
+  
+  input:active, input:focus, input:focus-visible {
+    border: none;
+    border-bottom: 2px solid rgb(59, 213, 241);
+    line-height: 0px;
+  }
+  
+
+  
+  
