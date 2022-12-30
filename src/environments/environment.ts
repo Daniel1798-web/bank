@@ -36,10 +36,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-try
-{
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-} catch(error) {
-    console.log('Error:', error)
-}
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore();
+
+export { auth, db };
