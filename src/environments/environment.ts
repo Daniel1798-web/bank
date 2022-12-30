@@ -38,15 +38,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
-export { auth, db };
+export {  db };
 
-export function getFirebaseConfig() {
-  if (!firebaseConfig || !firebaseConfig.apiKey) {
-    throw new Error('No Firebase configuration object provided.' + '\n' +
-    'Add your web app\'s configuration object to firebase-config.js');
-  } else {
-    return firebaseConfig;
-  }
-}
