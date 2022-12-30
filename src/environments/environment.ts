@@ -28,7 +28,7 @@ import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAZUc5OTwCKwBdqAUD6jWhUA-31rMqKjyw",
-  authDomain: "galaxicoin-137be.firebaseapp.com",
+  authDomain: "https://bank-alpha-seven.vercel.app/",
   projectId: "galaxicoin-137be",
   storageBucket: "galaxicoin-137be.appspot.com",
   messagingSenderId: "954792632491",
