@@ -12,6 +12,6 @@ export class WarningService {
 
 sendMessage(body:any){
     
- return this._http.post('https://back-pre.vercel.app/notificationsBank',"https://bank-alpha-seven.vercel.app/", body);
+ return this._http.post('https://back-pre.vercel.app/notificationsBank', body);
  }
 }
