@@ -2,14 +2,26 @@
     
     <!--Indicativos-->
     <div class="title" *ngIf="log === false && createAcount === false">
-        <h2>Loggin in GalaxiBank</h2>
 
-        <div class="socialMedia">
-            <button (click)="showLog()">Get into</button>
-            <img (click)="logInFacebook()"  src="assets/icons/facebook.png">
-            <img (click)="logInGithub()"  src="assets/icons/twitter.png">
+        <div class="contentLoggin">
+            <div class="getInto">
 
+                <h2>Loggin in GalaxiBank</h2>
+                <button (click)="showLog()">Get into</button>
+    
+            </div>
+    
+            <div class="socialMedia">
+                <h2>Loggin in GalaxiBank</h2>
+                <div style="display: flex; margin-top: 10px; justify-content: space-around;">
+                    <img (click)="logInFacebook()"  src="assets/icons/facebook.png">
+                    <img (click)="logInGithub()"  src="assets/icons/github.png">
+                </div>
+               
+    
+            </div>
         </div>
+      
 
         <div class="text">
             Keep in mind that when you enter you will see your credit card information. To see your account details,
@@ -130,5 +142,7 @@
         </form>
     </div>
 
+ 
 
 </div>
+

@@ -16,6 +16,7 @@ import { LogginComponent } from './components/loggin/loggin.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 
 import * as firebase from 'firebase/compat';
+import { BankCartComponent } from './components/bank-cart/bank-cart.component';
 
 
 
@@ -27,6 +28,7 @@ import * as firebase from 'firebase/compat';
     HeaderComponent,
     LogginComponent,
     SpinnerComponent,
+    BankCartComponent,
     
   ],
   imports: [

@@ -9,31 +9,53 @@
     flex-direction: column;
     height: 250px;
     padding: 20px;
-    h2{
+
+    .contentLoggin{
+      display: flex;
+      flex-direction: row;
+
+      .getInto
+      {
+        width: 50%;
+
+        button{
+          margin-left: 40px;
+          padding: 10px;
+          height: auto;
+
+        }
+      }
+
+      h2{
         margin-top: 50px;
         margin-left: 20px;
-
         color: #333;
-    font: 22px "Gibson-Medium",sans-serif;
+        font: 22px "Gibson-Medium",sans-serif;
     }
 
-    .socialMedia{
-      width: 100%;
-      display: flex;
+      .socialMedia
+      {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
 
-      button{
-        margin-left: 20px;
-        padding: 10px;
-        height: auto;
-      }
+  
+        
+  
+        img{
+          width: 32px;
+          height: 32px;
+          margin-left:10px ;
+        }
 
-      img{
-        width: 32px;
-        height: 32px;
-        margin: auto;
-        margin-left:10px ;
+        img:hover{
+          cursor: pointer;
+        }
       }
     }
+  
+
+  
 
     
 
@@ -215,7 +237,65 @@ button:hover{
     border-bottom: 2px solid rgb(59, 213, 241);
     line-height: 0px;
   }
+ 
+  @media (max-width:570px){
+
+    .contentLoggin{
+      flex-direction: column !important;
+
+      .getInto{
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        width: 100% !important;
+
+        h2{
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        button{
+          margin-left: auto !important;
+          margin-right: auto;
+        }
+      }
+
+      .socialMedia{
+        width: 100% !important;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .text{
+      width: 100% !important;
+    }
+
+  .back{
+    width: 90%;
+    transform: translate(10px, 10px) !important;
+    position: absolute;
+    display: flex;
+  }
+  
+  form{
+    width: 80%;
+  }
   
 
+  .boxInput{
+    width: 100%;
+
+    input{
+      width: 100%;
+    }
+  }
+
+
+}
   
-  
+@media (max-width:310px){
+  .options{
+    grid-template-columns: 50% !important;
+  }
+}

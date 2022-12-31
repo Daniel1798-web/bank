@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
     this.getCharacters()
   }
 
+  activeSmooth:boolean = false;
 
   activeSesion:boolean = false;
 

@@ -9,3 +9,29 @@
     box-shadow: -1px -2px 2px #686868, 2px 4px 2px 0px #686868;
 
 }
+
+
+ 
+.smooth{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(177 177 177 / 50%);
+  }
+
+  @media (max-width:570px){
+    .picture{
+        width: 90%;
+        height: 650px;
+        margin-top: 20px;
+    }
+  }
+
+
+
+  @media (max-width:310px){
+    .picture{
+        height: 850px;
+    }
+
+  }

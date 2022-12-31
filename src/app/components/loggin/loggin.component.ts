@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, 
   FacebookAuthProvider, signInWithPopup,TwitterAuthProvider, GithubAuthProvider  } from "firebase/auth";
@@ -67,28 +67,39 @@ export class LogginComponent implements OnInit {
   passwordSing:string = "";
   passwordVerify:string = "";
 
-
+  blokFunction:boolean = false;
   spinerActive:boolean = false;
   textInfo:string ="";
 
+  @Output() smooth = new EventEmitter<boolean>;
+  @Output() dataUser = new EventEmitter<boolean>;
+
 
   showLog(){
+    if(this.blokFunction === true){
+      return null
+    }else{
     this.createAcount = false;
     this.log = !this.log;
-   this.formuDatosSing.reset()
-
+    return this.formuDatosSing.reset()
+    }
   }
   
   showSing(){
-    this.createAcount = !this.createAcount;
-    this.log = false;
-    this.formuDatos.reset()
-
+    if(this.blokFunction === true){
+      return null
+    }else{
+      this.createAcount = !this.createAcount;
+      this.log = false;
+     return this.formuDatos.reset()
+    }
   }
 
   back(){
     this.log = false;
     this.createAcount = false;
+    this.formuDatos.reset()
+    this.formuDatosSing.reset()
   }
 
 
@@ -96,10 +107,11 @@ export class LogginComponent implements OnInit {
   //crear cuenta
   singIn(){
     const auth = getAuth();
-
+    this.blokFunction = true;
     this.spinerActive = true;
     createUserWithEmailAndPassword(auth, this.emailSing, this.passwordSing)
     .then((userCredential) => {
+      this.blokFunction = false;
       this.spinerActive = false;
 
       // Signed in 
@@ -113,6 +125,7 @@ export class LogginComponent implements OnInit {
       },7000)
     })
     .catch((error) => {
+      this.blokFunction = false;
       this.spinerActive = false;
       this.textInfo = error.message
       
@@ -129,13 +142,19 @@ export class LogginComponent implements OnInit {
   //Iniciar Sesión 
   logIn(){
     const auth = getAuth();
-
+    this.blokFunction = true;
     this.spinerActive = true;
     signInWithEmailAndPassword(auth, this.email, this.password)
-  .then((userCredential) => {
+      .then((userCredential) => 
+      {
+
+    this.blokFunction = false;
     this.spinerActive = false;
+
+
     // Signed in 
     const user = userCredential.user;
+    console.log(userCredential)
     this.textInfo = "Succes"
     setTimeout(()=>{
       this.textInfo = "";
@@ -143,6 +162,7 @@ export class LogginComponent implements OnInit {
     },7000)
   })
   .catch((error) => {
+    this.blokFunction = false;
     this.spinerActive = false;
     this.textInfo = error.message
 
@@ -161,9 +181,12 @@ export class LogginComponent implements OnInit {
  logInFacebook(){
  const provider = new FacebookAuthProvider();
  const auth = getAuth();
+ this.smooth.emit(true)
 
 signInWithPopup(auth, provider)
   .then((result) => {
+    this.smooth.emit(false)
+
     // The signed-in user info.
     const user = result.user;
     console.log(user)
@@ -175,6 +198,8 @@ signInWithPopup(auth, provider)
     // ...
   })
   .catch((error) => {
+    this.smooth.emit(false)
+
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -194,9 +219,12 @@ signInWithPopup(auth, provider)
  LogInTwiter(){
   const provider = new TwitterAuthProvider();
   const auth = getAuth();
+  this.smooth.emit(true)
 
   signInWithPopup(auth, provider)
   .then((result) => {
+    this.smooth.emit(false)
+
     // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
     // You can use these server side with your app's credentials to access the Twitter API.
     const credential = TwitterAuthProvider.credentialFromResult(result);
@@ -208,6 +236,8 @@ signInWithPopup(auth, provider)
     const user = result.user;
     // ...
   }).catch((error) => {
+    this.smooth.emit(false)
+
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -225,12 +255,15 @@ signInWithPopup(auth, provider)
 
 
  logInGithub(){
+  this.smooth.emit(true)
 
   const provider = new GithubAuthProvider();
   const auth = getAuth();
 
 signInWithPopup(auth, provider)
   .then((result) => {
+    this.smooth.emit(false)
+
     // This gives you a GitHub Access Token. You can use it to access the GitHub API.
     const credential = GithubAuthProvider.credentialFromResult(result);
     const token = credential?.accessToken;
@@ -240,6 +273,8 @@ signInWithPopup(auth, provider)
     const user = result.user;
     // ...
   }).catch((error) => {
+    this.smooth.emit(false)
+
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
