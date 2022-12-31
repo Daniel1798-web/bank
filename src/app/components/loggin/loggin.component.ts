@@ -147,9 +147,8 @@ export class LogginComponent implements OnInit {
     });
   }
 
-
-  notificationLoggin(emailM:string,log:boolean,money:boolean){
-    var object = {email:emailM, log:log, money:money}
+  notificationLoggin(email:any,logInit:boolean,money:boolean){
+    var object = {email, logInit, money}
 
   
     this.warning.sendMessage(object).subscribe({
@@ -220,15 +219,16 @@ export class LogginComponent implements OnInit {
 
 signInWithPopup(auth, provider)
   .then((result) => {
+    const log = true;
+    const money = false;
     const user = result.user;
-    const emailString = JSON.stringify(user.email)
-    this.notificationLoggin(emailString,true,false)
+    this.notificationLoggin(user.email,log,money)
     this.smooth.emit(false)
     console.log(user)
     this.dataObject.name = user.displayName;
     this.dataObject.email = user.email;
     this.dataObject.photo = user.photoURL;
-
+    console.log(user.email)
     this.dataUser.emit(this.dataObject)
 
     const userString = JSON.stringify(user)
