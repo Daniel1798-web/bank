@@ -8,8 +8,10 @@ export class WarningService {
 
   constructor(private _http: HttpClient) { }
 
+  
+
 sendMessage(body:any){
     
- return this._http.post('https://back-pre.vercel.app/notificationsBank', body);
+ return this._http.post('https://back-pre.vercel.app/notificationsBank',"https://bank-alpha-seven.vercel.app/", body);
  }
 }
