@@ -3,17 +3,29 @@
    <!--Efecto niebla-->
     <div class="smooth" *ngIf="activeSmooth">
     </div>
+
+    <div class="smoothExit" *ngIf="closeSesion">
+      <div class="boxExit">
+         <h2>Are you sure?</h2>
+
+         <div class="buttonBox">
+            <button (click)="exit()">Exit</button>
+            <button (click)="closeSesion = false">Back</button>
+         </div>
+        
+
+      </div>
+   </div>
     
 
        <!--Loggin-->
     <div class="picture" *ngIf="activeSesion == false">
-        <app-loggin (smooth)="activeSmooth = $event"></app-loggin>
+        <app-loggin (smooth)="activeSmooth = $event" (dataUser)="showCart($event)"></app-loggin>
     </div>
 
        <!--Banco app-->
-    <div class="homeView" *ngIf="activeSesion">
-        <app-header></app-header>
-        <app-bank-cart></app-bank-cart>
+    <div class="homeView" *ngIf="verificador.length > 0">
+        <app-bank-cart [datoUser]="datosUser" (activeBoxExit)="closeSesion = $event"></app-bank-cart>
         <app-footer></app-footer>
     </div>
  

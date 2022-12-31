@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, 
   FacebookAuthProvider, signInWithPopup,TwitterAuthProvider, GithubAuthProvider  } from "firebase/auth";
+  import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -14,12 +15,13 @@ export class LogginComponent implements OnInit {
   formuDatos: FormGroup;
   formuDatosSing: FormGroup;
 
-  constructor(public fb:FormBuilder, ) { 
+  constructor(public fb:FormBuilder,private cookieService: CookieService ) { 
 
     //Validador Form
     this.formuDatos = this.fb.group({
       email: ['', [Validators.required,Validators.email] ],
       password: ['', Validators.required ],
+      name: ['', Validators.required ],
 
     }),
 
@@ -61,6 +63,7 @@ export class LogginComponent implements OnInit {
   //Datos formulario
   email:string = "";
   password:string = "";
+  name:string = "";
 
   //sing
   emailSing:string = "";
@@ -72,7 +75,12 @@ export class LogginComponent implements OnInit {
   textInfo:string ="";
 
   @Output() smooth = new EventEmitter<boolean>;
-  @Output() dataUser = new EventEmitter<boolean>;
+
+
+  //constructores
+  @Output() dataUser = new EventEmitter<object>;
+
+
 
 
   showLog(){
@@ -139,6 +147,8 @@ export class LogginComponent implements OnInit {
 
 
 
+  
+
   //Iniciar Sesión 
   logIn(){
     const auth = getAuth();
@@ -150,7 +160,7 @@ export class LogginComponent implements OnInit {
 
     this.blokFunction = false;
     this.spinerActive = false;
-
+    this.cookieService.set("name", this.name)
 
     // Signed in 
     const user = userCredential.user;
@@ -186,35 +196,21 @@ export class LogginComponent implements OnInit {
 signInWithPopup(auth, provider)
   .then((result) => {
     this.smooth.emit(false)
-
-    // The signed-in user info.
     const user = result.user;
     console.log(user)
+    this.dataUser.emit(user)
 
-    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
     const credential = FacebookAuthProvider.credentialFromResult(result);
     const accessToken  = credential?.accessToken;
-
-    // ...
   })
   .catch((error) => {
     this.smooth.emit(false)
-
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
     const credential = FacebookAuthProvider.credentialFromError(error);
-    console.log(error)
-
-    // ...
   });
  }
 
 
- //Loggin con twiter 
+ //Loggin con twiter  (error)
 
  LogInTwiter(){
   const provider = new TwitterAuthProvider();
@@ -225,28 +221,15 @@ signInWithPopup(auth, provider)
   .then((result) => {
     this.smooth.emit(false)
 
-    // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
-    // You can use these server side with your app's credentials to access the Twitter API.
     const credential = TwitterAuthProvider.credentialFromResult(result);
-    console.log(result)
     const token = credential?.accessToken;
     const secret = credential?.secret;
+    console.log(result.user)
 
-    // The signed-in user info.
-    const user = result.user;
-    // ...
   }).catch((error) => {
     this.smooth.emit(false)
-
-    // Handle Errors here.
-    const errorCode = error.code;
     const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = TwitterAuthProvider.credentialFromError(error);
-    console.log(error)
-    // ...
+    console.log(errorMessage)
   });
  }
 
@@ -264,23 +247,16 @@ signInWithPopup(auth, provider)
   .then((result) => {
     this.smooth.emit(false)
 
-    // This gives you a GitHub Access Token. You can use it to access the GitHub API.
     const credential = GithubAuthProvider.credentialFromResult(result);
     const token = credential?.accessToken;
     console.log(result)
     console.log(result.user)
-    // The signed-in user info.
     const user = result.user;
-    // ...
+    this.dataUser.emit(user)
+
+
   }).catch((error) => {
     this.smooth.emit(false)
-
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
     const credential = GithubAuthProvider.credentialFromError(error);
     console.log(error)
 

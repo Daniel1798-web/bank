@@ -13,9 +13,16 @@ export class HomeComponent implements OnInit {
     this.getCharacters()
   }
 
+  closeSesion:boolean = false;
+
   activeSmooth:boolean = false;
 
   activeSesion:boolean = false;
+
+  datosUser:object = {};
+  verificador:string = "";
+
+  //Rick and morty appi clients
 
   getCharacters(){
     this.character.getAllCharacters().subscribe({
@@ -27,5 +34,23 @@ export class HomeComponent implements OnInit {
         } 
 
     })
+  }
+
+
+  showCart(data:object){
+
+    if(data){
+      this.verificador = "succes"
+      this.datosUser = data
+   return  this.activeSesion = true
+    }else{
+      return null
+    }
+  }
+
+  exit(){
+    this.verificador = ''
+    this.activeSesion = false;
+    this.closeSesion = false;
   }
 }

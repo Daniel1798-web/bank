@@ -15,8 +15,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { LogginComponent } from './components/loggin/loggin.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 
-import * as firebase from 'firebase/compat';
 import { BankCartComponent } from './components/bank-cart/bank-cart.component';
+import { InfoUserComponent } from './components/info-user/info-user.component';
 
 
 
@@ -29,6 +29,7 @@ import { BankCartComponent } from './components/bank-cart/bank-cart.component';
     LogginComponent,
     SpinnerComponent,
     BankCartComponent,
+    InfoUserComponent,
     
   ],
   imports: [

@@ -1,0 +1,29 @@
+.datos{
+    width: 100%;
+    display: flex;
+    img{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        box-shadow: 3px 2px 3px 0px black, -1px -1px 6px 0px black;
+    }
+
+    h1{
+        margin-left: 20px;
+        margin-top: 55px;
+        color: #333;
+        font: 28px Gibson-Medium,sans-serif;
+    }
+
+    .exit{
+        margin-left: auto;
+        margin-right: 25px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .exit:hover{
+        cursor: pointer;
+        box-shadow: 2px 1px 2px 0px;
+    }
+}

@@ -67,7 +67,13 @@
 
         <!--Iniciar sesión-->
         <form *ngIf="log" [formGroup]="formuDatos">
-
+            <div class="boxInput">
+                <span>Name</span>
+                <input placeholder="Name" type="text"  [(ngModel)]="name" formControlName="name" required>
+                <span class="errorMessage" *ngIf="name.length < 2 && name.length > 0">
+                    required
+                </span>
+            </div>
             <div class="boxInput">
                 <span>Email</span>
                 <input placeholder="Email" type="text"  [(ngModel)]="email" formControlName="email" required>
