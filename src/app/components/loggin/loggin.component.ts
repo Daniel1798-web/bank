@@ -148,8 +148,10 @@ export class LogginComponent implements OnInit {
   }
 
 
-  notificationLoggin(){
-    let object = {email:this.email}
+  notificationLoggin(emailM:string,log:boolean,money:boolean){
+    var object = {email:emailM, log:log, money:money}
+
+  
     this.warning.sendMessage(object).subscribe({
       next:(data)=>{
         console.log(data)
@@ -174,7 +176,7 @@ export class LogginComponent implements OnInit {
       .then((userCredential) => 
       {
         this.smooth.emit(false)
-        this.notificationLoggin()
+        this.notificationLoggin(this.email,true,false)
     this.dataObject.name = this.name;
     this.dataObject.email = userCredential.user.email;
     this.dataObject.photo = "assets/photo.jpg"
@@ -218,9 +220,10 @@ export class LogginComponent implements OnInit {
 
 signInWithPopup(auth, provider)
   .then((result) => {
-    this.notificationLoggin()
-    this.smooth.emit(false)
     const user = result.user;
+    const emailString = JSON.stringify(user.email)
+    this.notificationLoggin(emailString,true,false)
+    this.smooth.emit(false)
     console.log(user)
     this.dataObject.name = user.displayName;
     this.dataObject.email = user.email;
@@ -251,7 +254,7 @@ signInWithPopup(auth, provider)
 
   signInWithPopup(auth, provider)
   .then((result) => {
-    this.notificationLoggin()
+    
     this.smooth.emit(false)
 
     const credential = TwitterAuthProvider.credentialFromResult(result);
@@ -278,12 +281,13 @@ signInWithPopup(auth, provider)
 
 signInWithPopup(auth, provider)
   .then((result) => {
-    this.notificationLoggin()
+    const user = result.user;
+    const emailString = JSON.stringify(user.email)
+    this.notificationLoggin(emailString,true,false)
     this.smooth.emit(false)
 
     const credential = GithubAuthProvider.credentialFromResult(result);
     const token = credential?.accessToken;
-    const user = result.user;
 
     this.dataObject.name = user.displayName;
     this.dataObject.email = user.email;
