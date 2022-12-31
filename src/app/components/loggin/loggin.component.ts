@@ -14,7 +14,7 @@ export class LogginComponent implements OnInit {
   formuDatos: FormGroup;
   formuDatosSing: FormGroup;
 
-  constructor(public fb:FormBuilder) { 
+  constructor(public fb:FormBuilder, ) { 
 
     //Validador Form
     this.formuDatos = this.fb.group({
