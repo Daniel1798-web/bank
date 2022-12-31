@@ -100,6 +100,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "bank:build:production",
+            "firebaseProject": "galaxicoin-137be",
+            "firebaseHostingSite": "galaxicoin-137be"
+          }
         }
       }
     }

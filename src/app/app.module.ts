@@ -5,8 +5,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
+import {provideAuth, getAuth} from '@angular/fire/auth'
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from 'src/environments/environment';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,14 +27,17 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     FooterComponent,
     HeaderComponent,
     LogginComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
+    provideAuth(()=> getAuth())
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "galaxicoin-137be": {
+      "hosting": {
+        "bank": [
+          "galaxicoin-137be"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "galaxicoin-137be"
+  }
+}
