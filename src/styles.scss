@@ -24,3 +24,21 @@ body{
     border-bottom: 2px red solid;
   caret-color: red;
 }
+
+
+::-webkit-scrollbar {
+    width: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8137ff;
+    border-radius: 10px;
+    width: 2px;
+    height: 2px;
+}
+
+::-webkit-scrollbar-track {
+    background: #e0e0e0;
+  //  width: 5px;
+    border-radius: 5px;
+}
