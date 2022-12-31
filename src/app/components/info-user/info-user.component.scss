@@ -8,10 +8,21 @@
         box-shadow: 3px 2px 3px 0px black, -1px -1px 6px 0px black;
     }
 
+    .contentMoney{
+        display: flex;
+        flex-direction: column;
+    }
+
     h1{
         margin-left: 20px;
         margin-top: 55px;
         color: #333;
+        font: 28px Gibson-Medium,sans-serif;
+    }
+
+    h2{
+        margin: auto;
+        margin-left: 15px;
         font: 28px Gibson-Medium,sans-serif;
     }
 

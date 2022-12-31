@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-info-user',
@@ -7,11 +8,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class InfoUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cookieService: CookieService) { }
 
-
+  dataMoney:string = this.cookieService.get("money");
+  money:number = JSON.parse(this.dataMoney)
   ngOnInit(): void {
-   
   }
 
 

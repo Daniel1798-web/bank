@@ -1,9 +1,14 @@
 <div class="box" style="width: 100%;">
     <div class="datos">
+      
         <img [src]="nameImage[1]">
-        <h1>{{nameImage[0]}}</h1>
+        <div class="contentMoney">
+            <h1>{{nameImage[0]}}</h1>
+                <h2>{{money | currency:'USD'}}</h2>
+        </div>
         <img class="exit" src="assets/icons/exit.png" (click)="exit()">
 
     </div>
+  
     
 </div>

@@ -1,8 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, 
-  FacebookAuthProvider, signInWithPopup,TwitterAuthProvider, GithubAuthProvider  } from "firebase/auth";
+        FacebookAuthProvider, signInWithPopup,TwitterAuthProvider, GithubAuthProvider  } from "firebase/auth";
   import { CookieService } from 'ngx-cookie-service';
+  import {WarningService} from '../../service/notifications/warning.service'
 
 
 @Component({
@@ -15,7 +16,7 @@ export class LogginComponent implements OnInit {
   formuDatos: FormGroup;
   formuDatosSing: FormGroup;
 
-  constructor(public fb:FormBuilder,private cookieService: CookieService ) { 
+  constructor(public fb:FormBuilder,private cookieService: CookieService, public warning: WarningService ) { 
 
     //Validador Form
     this.formuDatos = this.fb.group({
@@ -81,6 +82,7 @@ export class LogginComponent implements OnInit {
   @Output() dataUser = new EventEmitter<object>;
 
 
+  dataObject:any ={}
 
 
   showLog(){
@@ -146,6 +148,18 @@ export class LogginComponent implements OnInit {
   }
 
 
+  notificationLoggin(){
+    let object = {email:this.email}
+    this.warning.sendMessage(object).subscribe({
+      next:(data)=>{
+        console.log(data)
+      },
+      error:(error)=>{
+        console.log(error)
+      }
+    })
+    
+  }
 
   
 
@@ -154,17 +168,25 @@ export class LogginComponent implements OnInit {
     const auth = getAuth();
     this.blokFunction = true;
     this.spinerActive = true;
+    this.smooth.emit(true)
+
     signInWithEmailAndPassword(auth, this.email, this.password)
       .then((userCredential) => 
       {
-
+        this.smooth.emit(false)
+        this.notificationLoggin()
+    this.dataObject.name = this.name;
+    this.dataObject.email = userCredential.user.email;
+    this.dataObject.photo = "assets/photo.jpg"
+    this.dataUser.emit(this.dataObject)
     this.blokFunction = false;
     this.spinerActive = false;
     this.cookieService.set("name", this.name)
+    this.cookieService.set("money", "15000")
+    const userString = JSON.stringify( userCredential.user)
+    this.cookieService.set('user', userString)
 
     // Signed in 
-    const user = userCredential.user;
-    console.log(userCredential)
     this.textInfo = "Succes"
     setTimeout(()=>{
       this.textInfo = "";
@@ -172,6 +194,7 @@ export class LogginComponent implements OnInit {
     },7000)
   })
   .catch((error) => {
+    this.smooth.emit(false)
     this.blokFunction = false;
     this.spinerActive = false;
     this.textInfo = error.message
@@ -195,10 +218,19 @@ export class LogginComponent implements OnInit {
 
 signInWithPopup(auth, provider)
   .then((result) => {
+    this.notificationLoggin()
     this.smooth.emit(false)
     const user = result.user;
     console.log(user)
-    this.dataUser.emit(user)
+    this.dataObject.name = user.displayName;
+    this.dataObject.email = user.email;
+    this.dataObject.photo = user.photoURL;
+
+    this.dataUser.emit(this.dataObject)
+
+    const userString = JSON.stringify(user)
+    this.cookieService.set('user', userString)
+    this.cookieService.set("money", "15000")
 
     const credential = FacebookAuthProvider.credentialFromResult(result);
     const accessToken  = credential?.accessToken;
@@ -219,6 +251,7 @@ signInWithPopup(auth, provider)
 
   signInWithPopup(auth, provider)
   .then((result) => {
+    this.notificationLoggin()
     this.smooth.emit(false)
 
     const credential = TwitterAuthProvider.credentialFromResult(result);
@@ -245,14 +278,19 @@ signInWithPopup(auth, provider)
 
 signInWithPopup(auth, provider)
   .then((result) => {
+    this.notificationLoggin()
     this.smooth.emit(false)
 
     const credential = GithubAuthProvider.credentialFromResult(result);
     const token = credential?.accessToken;
-    console.log(result)
-    console.log(result.user)
     const user = result.user;
-    this.dataUser.emit(user)
+
+    this.dataObject.name = user.displayName;
+    this.dataObject.email = user.email;
+    this.dataObject.photo = user.photoURL;
+
+    this.dataUser.emit(this.dataObject)
+    this.cookieService.set("money", "15000")
 
 
   }).catch((error) => {

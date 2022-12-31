@@ -16,8 +16,8 @@ export class BankCartComponent implements OnInit {
   imageName:Array<string> = [];
 
   ngOnInit(): void {
-    this.imageName.push(this.datoUser.displayName)
-    this.imageName.push(this.datoUser.photoURL)
+    this.imageName.push(this.datoUser.name)
+    this.imageName.push(this.datoUser.photo)
 
   }
 
