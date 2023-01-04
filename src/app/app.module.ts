@@ -17,6 +17,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 
 import { BankCartComponent } from './components/bank-cart/bank-cart.component';
 import { InfoUserComponent } from './components/info-user/info-user.component';
+import { PaymentServiceComponent } from './components/payment-service/payment-service.component';
+import { MoneyTrackComponent } from './components/money-track/money-track.component';
 
 
 
@@ -30,6 +32,8 @@ import { InfoUserComponent } from './components/info-user/info-user.component';
     SpinnerComponent,
     BankCartComponent,
     InfoUserComponent,
+    PaymentServiceComponent,
+    MoneyTrackComponent,
     
   ],
   imports: [

@@ -82,7 +82,12 @@ export class LogginComponent implements OnInit {
   @Output() dataUser = new EventEmitter<object>;
 
 
-  dataObject:any ={}
+  dataObject:any ={
+    name:"",
+    email:"",
+    photo:"",
+    movements:[]
+  }
 
 
   showLog(){
@@ -175,20 +180,25 @@ export class LogginComponent implements OnInit {
       .then((userCredential) => 
       {
         this.smooth.emit(false)
-        this.notificationLoggin(this.email,true,false)
-    this.dataObject.name = this.name;
-    this.dataObject.email = userCredential.user.email;
-    this.dataObject.photo = "assets/photo.jpg"
-    this.dataUser.emit(this.dataObject)
-    this.blokFunction = false;
-    this.spinerActive = false;
-    this.cookieService.set("name", this.name)
-    this.cookieService.set("money", "15000")
-    const userString = JSON.stringify( userCredential.user)
-    this.cookieService.set('user', userString)
+        this.cookieService.set("time", "900000")
+        this.cookieService.set("name", this.name)
 
-    // Signed in 
-    this.textInfo = "Succes"
+        this.notificationLoggin(this.email,true,false)
+
+        
+        this.dataObject.name = this.name;
+        this.dataObject.email = userCredential.user.email;
+        this.dataObject.photo = "assets/photo.jpg"
+        this.dataObject.movements.push({money:15000, positive:true})
+        this.dataUser.emit(this.dataObject)
+        this.blokFunction = false;
+        this.spinerActive = false;
+      
+        const userString = JSON.stringify( userCredential.user)
+        this.cookieService.set('user', userString)
+
+        // Signed in 
+        this.textInfo = "Succes"
     setTimeout(()=>{
       this.textInfo = "";
 
@@ -219,24 +229,29 @@ export class LogginComponent implements OnInit {
 
 signInWithPopup(auth, provider)
   .then((result) => {
+    this.smooth.emit(false)
+
     const log = true;
     const money = false;
     const user = result.user;
-    this.notificationLoggin(user.email,log,money)
-    this.smooth.emit(false)
-    console.log(user)
+   // this.notificationLoggin(user.email,log,money)
     this.dataObject.name = user.displayName;
     this.dataObject.email = user.email;
     this.dataObject.photo = user.photoURL;
+    this.dataObject.movements.push({money:15000, positive:true})
+
     console.log(user.email)
-    this.dataUser.emit(this.dataObject)
 
     const userString = JSON.stringify(user)
     this.cookieService.set('user', userString)
     this.cookieService.set("money", "15000")
+    this.cookieService.set("time", "900000")
 
     const credential = FacebookAuthProvider.credentialFromResult(result);
     const accessToken  = credential?.accessToken;
+
+    this.dataUser.emit(this.dataObject)
+
   })
   .catch((error) => {
     this.smooth.emit(false)
@@ -254,7 +269,8 @@ signInWithPopup(auth, provider)
 
   signInWithPopup(auth, provider)
   .then((result) => {
-    
+    this.cookieService.set("time", "900000")
+
     this.smooth.emit(false)
 
     const credential = TwitterAuthProvider.credentialFromResult(result);
@@ -281,10 +297,14 @@ signInWithPopup(auth, provider)
 
 signInWithPopup(auth, provider)
   .then((result) => {
+    this.smooth.emit(false)
+
+    this.cookieService.set("time", "900000")
+    this.cookieService.set("money", "15000")
+
     const user = result.user;
     const emailString = JSON.stringify(user.email)
     this.notificationLoggin(emailString,true,false)
-    this.smooth.emit(false)
 
     const credential = GithubAuthProvider.credentialFromResult(result);
     const token = credential?.accessToken;
@@ -292,9 +312,10 @@ signInWithPopup(auth, provider)
     this.dataObject.name = user.displayName;
     this.dataObject.email = user.email;
     this.dataObject.photo = user.photoURL;
+    this.dataObject.movements.push({money:15000, positive:true})
+
 
     this.dataUser.emit(this.dataObject)
-    this.cookieService.set("money", "15000")
 
 
   }).catch((error) => {

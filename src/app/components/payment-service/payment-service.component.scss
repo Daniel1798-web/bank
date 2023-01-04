@@ -1,0 +1,48 @@
+.box{
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.content{
+    display: flex;
+    width: 100%;
+}
+
+.listPayment{
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    width: 100%;
+}
+
+
+.listPayment{
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    width: 100%;
+
+    ul{
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+
+      li{
+        height: 48px;
+        width: 48px;
+        background: #78c0ff;
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        margin-right: 5px;
+
+
+        img{
+          width: 32px;
+          height: 32px;
+          margin: auto;
+        }
+      }
+    }
+  }

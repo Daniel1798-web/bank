@@ -1,5 +1,7 @@
 <div class="box">
 
-    <app-info-user [nameImage]="imageName" (exitSesion)="activeBox($event)"></app-info-user>
+    <app-info-user [datosInfo]="datoUser" (exitSesion)="activeBox($event)"></app-info-user>
+    <app-payment-service></app-payment-service>
 
+    <app-money-track [historyMovements]="datoUser.movements"></app-money-track>
 </div>

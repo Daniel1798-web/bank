@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { CharactersService} from '../../service/rickMorty/characters.service'
 @Component({
   selector: 'app-home',
@@ -7,8 +8,9 @@ import { CharactersService} from '../../service/rickMorty/characters.service'
 })
 export class HomeComponent implements OnInit {
 
-  constructor( private character: CharactersService){}
-
+  constructor( private character: CharactersService,private cookieService: CookieService,){}
+  time:string = this.cookieService.get("time");
+  timeLogOut:number = JSON.parse(this.time)
   ngOnInit(): void {
     this.getCharacters()
   }
@@ -42,6 +44,9 @@ export class HomeComponent implements OnInit {
     if(data){
       this.verificador = "succes"
       this.datosUser = data
+      setTimeout(()=>{
+        this.exit()
+      },this.timeLogOut)
    return  this.activeSesion = true
     }else{
       return null

@@ -16,7 +16,7 @@ export class InfoUserComponent implements OnInit {
   }
 
 
-  @Input() nameImage:Array<any> = [];
+  @Input() datosInfo:any = {};
   @Output() exitSesion = new EventEmitter<boolean>;
 
   exit(){

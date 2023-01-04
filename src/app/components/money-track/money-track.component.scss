@@ -1,0 +1,54 @@
+.box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.track{
+    display: flex;
+    justify-content: START;
+    width: 100%;
+    height: 20px;
+    background-color: blue;
+    color: white;
+
+    h2{
+        margin-left: 10px;
+        font-size: 18px;
+    }
+}
+
+.trackOpen{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 300px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: blue;
+    margin: auto;
+}
+
+.boxMovements{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    margin-left: auto;
+    background-color: #ff1c03;
+    height: 40px;
+    color: white;
+    font-size: 20px;
+    margin-right: auto;
+
+    span{
+        padding: 10px;
+    }
+
+
+}
+
+
+.green{
+    background-color: green;
+}
