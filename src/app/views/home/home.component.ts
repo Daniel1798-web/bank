@@ -9,8 +9,9 @@ import { CharactersService} from '../../service/rickMorty/characters.service'
 export class HomeComponent implements OnInit {
 
   constructor( private character: CharactersService,private cookieService: CookieService,){}
-  time:any = this.cookieService.get("time");
-  timeLogOut:number = this.time
+  time:string = this.cookieService.get("time");
+  time2:number = JSON.parse(this.time)
+  timeLogOut:number = this.time2
   ngOnInit(): void {
     this.getCharacters()
   }
